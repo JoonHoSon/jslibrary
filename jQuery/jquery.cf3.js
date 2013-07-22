@@ -71,10 +71,13 @@
         });
     };
 
-    zeroFill = function(targetValue, fullLength) {
-        if (targetValue == null || typeof target == 'undefined' || fullLength < 0) {
+    $.fn.zeroFill = function(targetValue, fullLength) {
+        console.log('targetValue : ' + targetValue);
+        if (targetValue == null || fullLength < 0) {
             return '';
         }
+        
+        console.log('start!');
 
         var length = fullLength - targetValue.toString().length;
         var result = '';

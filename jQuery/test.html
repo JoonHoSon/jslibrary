@@ -15,6 +15,14 @@
 				<input type="button" id="btnInputLength" value="Do it!" placeholder="input target text" />
                 <span class="message"></span>
 			</fieldset>
+			<fieldset id="setZeroFill">
+				<legend>$.zeroFill Sample</legend>
+				<label for="exZerofill">
+					Target length : <input type="text" id="exZeroFill" name="exZeroFill">
+				</label>
+				<input type="button" id="btnZeroFill" value="Do it!" placeholder="input target text" />
+                <span class="message"></span>
+			</fieldset>
 		</form>
 		
 		<script charset="utf-8">
@@ -22,6 +30,10 @@
 				$('#btnInputLength').bind('click', function() {
                     $('#setInputLength').find('.message').text('text length : ' + $('#exInputLength').inputLength());
 				});
+                
+                $('#btnZeroFill').bind('click', function() {
+                    $('#setZeroFill').find('.message').text('result : ' + $('#exZeroFill').zeroFill($('#exZeroFill').val(), 10));
+                });
 			});
 		</script>
 	</body>

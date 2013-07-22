@@ -3,8 +3,13 @@
     //     var options = $.extend({
     //         'cjk2byte':false
     //     }, option || {});
-    $.fn.inputLength = function() {
-        var str = this.val();
+    $.fn.inputLength = function(options) {
+        // default option
+        defaultOptions = $.extend({
+            isTrim: true
+        }, options);
+
+        var str = (defaultOptions['isTrim'])? $.trim(this.val()): this.val();
         var koreanCount = 0;
         
         koreanCount = (encodeURI(str) + '%u').match(/%u/g).length - 1;
@@ -12,6 +17,11 @@
         return str.length + koreanCount;
     };
 
+    /**
+     * 레이어 팝업
+     *
+     * @param jqObject 팝업 jQuery 객체
+     */
     $.fn.popupLayer = function() {
         var wrapper;
 
@@ -59,53 +69,20 @@
 
             e.preventDefault();
         });
-    }
-})(jQuery);
+    };
 
-$.extend(
-    {
-        /**
-         * 레이어 팝업
-         *
-         * @param jqObject 팝업 jQuery 객체
-         */
-        popupLayer: function (jqObject) {
-            
-        },
-        
-        /**
-         * 0으로 채우기
-         * 
-         * @param target 대상 숫자
-         * @param fullLength 대상 숫자를 포함해서 0으로 채울 길이
-         */
-        zeroFill: function(target, fullLength) {
-            if (target == null || typeof target == 'undefined' || fullLength < 0) {
-                return '';
-            }
-
-            var length = fullLength - target.toString().length;
-            var result = '';
-
-            for (var i = 0; i < length; i++) {
-                result += '0';
-            }
-
-            return result + target.toString();
-        },
-        
-        /**
-         * 한글을 포함한 입력값의 길이 반환
-         * 
-         * @param jqObject input, textarea 등의 jQuery 객체
-         */
-        inputLength: function(jqObject) {
-            var str = $(jqObject).val();
-            var koreanCount = 0;
-            
-            koreanCount = (escape(str) + '%u').match(/%u/g).length - 1;
-            
-            return str.length + koreanCount;
+    zeroFill = function(targetValue, fullLength) {
+        if (targetValue == null || typeof target == 'undefined' || fullLength < 0) {
+            return '';
         }
-    }
-)
+
+        var length = fullLength - targetValue.toString().length;
+        var result = '';
+
+        for (var i = 0; i < length; i++) {
+            result += '0';
+        }
+
+        return result + targetValue.toString();
+    };
+})(jQuery);

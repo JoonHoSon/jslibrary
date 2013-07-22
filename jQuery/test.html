@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Plugin Sample</title>
+        <script src="http://code.jquery.com/jquery-git1.js"></script>
+		<script src="./jQuery.cf3.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<form action="test.html" method="get" accept-charset="utf-8">
+			<fieldset id="setInputLength">
+				<legend>$.inputLength Sample</legend>
+				<label for="exInputLength">
+					Target length : <input type="text" id="exInputLength" name="exInputLength">
+				</label>
+				<input type="button" id="btnInputLength" value="Do it!" placeholder="input target text" />
+                <span class="message"></span>
+			</fieldset>
+		</form>
+		
+		<script charset="utf-8">
+			$.fn.ready(function() {
+				$('#btnInputLength').bind('click', function() {
+                    $('#setInputLength').find('.message').text('text length : ' + $('#exInputLength').inputLength());
+				});
+			});
+		</script>
+	</body>
+</html>

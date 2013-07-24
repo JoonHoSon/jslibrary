@@ -10,18 +10,30 @@
 			<fieldset id="setInputLength">
 				<legend>$.inputLength Sample</legend>
 				<label for="exInputLength">
-					Target length : <input type="text" id="exInputLength" name="exInputLength">
+					Target length : <input type="text" id="exInputLength" name="exInputLength" placeholder="input target text" />
 				</label>
-				<input type="button" id="btnInputLength" value="Do it!" placeholder="input target text" />
+				<input type="button" id="btnInputLength" value="Do it!"/>
                 <span class="message"></span>
 			</fieldset>
 			<fieldset id="setZeroFill">
 				<legend>$.zeroFill Sample</legend>
 				<label for="exZerofill">
-					Target length : <input type="text" id="exZeroFill" name="exZeroFill">
+					Target length : <input type="text" id="exZeroFill" name="exZeroFill" placeholder="input target text" />
 				</label>
-				<input type="button" id="btnZeroFill" value="Do it!" placeholder="input target text" />
+				<input type="button" id="btnZeroFill" value="Do it!" />
                 <span class="message"></span>
+			</fieldset>
+			<fieldset id="setPopupLayer">
+				<legend>$.popupLayer Sample</legend>
+				<label for="exPopupLayer">
+					backgroundColor : <input type="text" id="exBackgroundColor" name="exBackgroundColor" placeholder="#000" /><br />
+					opacity : <input type="text" id="exPopupLayerOpacity" name="exPopupLayerOpacity" placeholder="0.2" />
+				</label>
+				<input type="button" id="btnPopupLayer" value="Do it!" />
+				<div id="popupContent" style="width: 300px; background-color: #fff; display: none;">
+					<div class="btnClose" style="height: 25px; text-align: right; cursor: pointer;">Close</div>
+					<div style="height: 300px;">Content</div>
+				</div>
 			</fieldset>
 		</form>
 		
@@ -33,6 +45,20 @@
                 
                 $('#btnZeroFill').bind('click', function() {
                     $('#setZeroFill').find('.message').text('result : ' + $('#exZeroFill').zeroFill($('#exZeroFill').val(), 10));
+                });
+                
+                $('#btnPopupLayer').bind('click', function () {
+                	var option = {};
+                	
+                	if ($.trim($('#exBackgroundColor').val()) != '') {
+                		option['backgroundColor'] = $('#exBackgroundColor').val();
+                	}
+                	
+                	if ($.trim($('#exPopupLayerOpacity').val()) != '') {
+                		option['opacity'] = $('#exPopupLayerOpacity').val();
+                	}
+                	
+                	$('#popupContent').popupLayer(option);
                 });
 			});
 		</script>

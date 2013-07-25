@@ -8,8 +8,6 @@
 		shareTwitter: function(url, title) {
 			var href = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(url);
 
-			console.log(href);
-
 			if ($.trim(title) != '') {
 				href += '&text=' + encodeURIComponent(title);
 			}
@@ -44,6 +42,8 @@
 			if ($.trim(image) != '' && image.toLowerCase(image).indexOf('http://') != -1) {
 				parameter += encodeURI('&p[images][0]') + '=' + encodeURIComponent(image);
 			}
+
+			parameter += encodeURI('&p[images][1]') + '=' + encodeURIComponent('http://icon.daumcdn.net/w/c/12/11/10192021148946703.png');
 
 			var pop = window.open(href + '?' + parameter);
 

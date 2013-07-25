@@ -2,8 +2,6 @@
 <html>
 	<head>
 		<title>Plugin Sample</title>
-        <script src="http://code.jquery.com/jquery-git1.js"></script>
-		<script src="./jQuery.cf3.js" charset="utf-8"></script>
 	</head>
 	<body>
 		<form action="test.html" method="get" accept-charset="utf-8">
@@ -35,8 +33,37 @@
 					<div style="height: 300px;">Content</div>
 				</div>
 			</fieldset>
+			<fieldset id="setShareTwitter">
+				<legend>$.shareTwitter Sample</legend>
+				<label for="exShareTwitterTitle">
+					title : <input type="text" id="exShareTwitterTitle" name="exShareTwitterTitle" placeholder="Title for share page" />
+				</label><br />
+				<label for="exShareTwitterLink">
+					url : <input type="text" id="exShareTwitterLink" name="exShareTwitterLink" placeholder="https://github.com/JoonHoSon/jslibrary" />
+				</label>
+				<input type="button" id="btnShareTwitter" value="Do it!" />
+			</fieldset>
+			<fieldset id="setShareFacebook">
+				<legend>$.shareFacebook Sample</legend>
+				<label for="exShareFacebookTitle">
+					title : <input type="text" id="exShareFacebookTitle" name="exShareFacebookTitle" placeholder="Title for share page" />
+				</label><br />
+				<label for="exShareFacebookLink">
+					url : <input type="text" id="exShareFacebookLink" name="exShareFacebookLink" placeholder="https://github.com/JoonHoSon/jslibrary" />
+				</label><br />
+				<label for="exShareFacebookSummary">
+					Summary : <textarea id="exShareFacebookSummary" name="exShareFacebookSummary" placeholder="Summary text..." style="width: 300px; height:80px;"></textarea>
+				</label><br />
+				<label for="exShareFacebookImage">
+					Imgae : <input type="text" id="exShareFacebookImage" name="exShareFacebookImage" placeholder="http://github.global.ssl.fastly.net/images/modules/about_page/parallax_octocat.png" />
+				</label>
+				<input type="button" id="btnShareFacebook" value="Do it!" />
+			</fieldset>
 		</form>
 		
+		<script src="http://code.jquery.com/jquery-git1.js"></script>
+		<script src="./jQuery.cf3.js" charset="utf-8"></script>
+		<script src="./jQuery.cf3.sns.js" charset="utf-8"></script>
 		<script charset="utf-8">
 			$.fn.ready(function() {
 				$('#btnInputLength').bind('click', function() {
@@ -59,6 +86,36 @@
                 	}
                 	
                 	$('#popupContent').popupLayer(option);
+                });
+
+                $('#btnShareTwitter').bind('click', function() {
+                	var title = $('#exShareTwitterTitle').val();
+                	var link = $('#exShareTwitterLink').val();
+
+                	if (link == '') {
+                		alert('url is required field');
+                		$('#exShareTwitterLink').focus();
+
+                		return;
+                	}
+
+                	$.shareTwitter(link, title);
+                });
+
+                $('#btnShareFacebook').bind('click', function() {
+                	var title = $('#exShareFacebookTitle').val();
+                	var link = $('#exShareFacebookLink').val();
+                	var summary = $('#exShareFacebookSummary').val();
+                	var image = $('#exShareFacebookImage').val();
+
+                	if (link == '') {
+                		alert('url is required field');
+                		$('#exShareFacebookLink').focus();
+
+                		return;
+                	}
+
+                	$.shareFacebook(link, title, summary, image);
                 });
 			});
 		</script>

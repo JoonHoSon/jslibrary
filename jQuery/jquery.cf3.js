@@ -92,4 +92,4 @@
 
         return result + targetValue.toString();
     };
-})(jQuery);
+})($);

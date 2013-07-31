@@ -3,8 +3,11 @@
 
 ## 사용법
 
-## TODO
+## History
 - 2013.07.27
 	- node용 생성
-- ~~2013.07.23~~
-	- ~~layerPopup 개선~~
+	- jQuery plugin에 [미투데이](http://me2day.net) 추가
+	- node module에 zeroFill 추가
+	- php library 생성 및 `inputLength`, `zeroFill` 추가
+- 2013.07.23
+	- jQuery plugin layerPopup 개선

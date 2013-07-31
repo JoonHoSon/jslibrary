@@ -7,4 +7,20 @@ function inputLength(target, isTrim) {
     return str.length + koreanCount;
 }
 
+function zeroFill(target, fullLength) {
+    if (targetValue == null || fullLength < 0) {
+        return '';
+    }
+
+    var length = fullLength - targetValue.toString().length;
+    var result = '';
+
+    for (var i = 0; i < length; i++) {
+        result += '0';
+    }
+
+    return result + targetValue.toString();
+}
+
 exports.inputLength = inputLength;
+exports.zeroFill = zeroFill;

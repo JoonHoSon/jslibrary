@@ -4,7 +4,7 @@
      * 
      * @param options
      */
-    $.fn.inputLength = function(options) {
+    $.fn.inputLength = function (options) {
         // default option
         defaultOptions = $.extend({
             isTrim: true
@@ -23,7 +23,7 @@
      *
      * @param jqObject 팝업 jQuery 객체
      */
-    $.fn.popupLayer = function(options) {
+    $.fn.popupLayer = function (options) {
         // default option
         defaultOptions = $.extend({
             backgroundColor: '#000',
@@ -78,7 +78,7 @@
         });
     };
 
-    $.fn.zeroFill = function(targetValue, fullLength) {
+    $.fn.zeroFill = function (targetValue, fullLength) {
         if (targetValue == null || fullLength < 0) {
             return '';
         }
@@ -91,5 +91,21 @@
         }
 
         return result + targetValue.toString();
+    };
+
+    $.fn.getLastDateWithObject = function (date) {
+        if (date == null) {
+            return null;
+        }
+
+        return new Date(new Date(date.getFullYear(), date.getMonth() + 1, 1) - 1);
+    };
+
+    $.fn.getLastDate = function (date) {
+        return $.getLastDateWithObject(date).getDate();
+    };
+
+    $.fn.getLastDay = function (date) {
+        return $.getLastDateWithObject(date).getDay();
     };
 })($);

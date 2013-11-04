@@ -108,4 +108,14 @@
     $.fn.getLastDay = function (date) {
         return $.getLastDateWithObject(date).getDay();
     };
+    
+    // 화면 가운데 정렬하기
+    // 참고 : http://www.hackerex.com/Question/10/제이쿼리로DIV요소를화면가운데에놓기
+    $.fn.center = function() {
+        this.css('position', 'absolute');
+        this.css('top', Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + 'px');
+        this.css('left', Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + 'px');
+        
+        return this;
+    };
 })($);

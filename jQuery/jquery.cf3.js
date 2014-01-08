@@ -6,11 +6,11 @@
      */
     $.fn.inputLength = function (options) {
         // default option
-        defaultOptions = $.extend({
+        var defaultOptions = $.extend({
             isTrim: true
         }, options);
 
-        var str = (defaultOptions['isTrim'])? $.trim(this.val()): this.val();
+        var str = (defaultOptions.isTrim)? $.trim(this.val()): this.val();
         var koreanCount = 0;
         
         koreanCount = (encodeURI(str) + '%u').match(/%u/g).length - 1;
@@ -25,7 +25,7 @@
      */
     $.fn.popupLayer = function (options) {
         // default option
-        defaultOptions = $.extend({
+        var defaultOptions = $.extend({
             backgroundColor: '#000',
             opacity: 0.2
         }, options);
@@ -50,8 +50,8 @@
         $(wrapper).css('position', 'fixed').css('_position', 'absolute').css('top', '0').css('left', '0');
         $(wrapper).css('width', '100%').css('height', '100%').css('z-index', '300');
 
-        $(bg).css('width', '100%').css('height', '100%').css('background-color', defaultOptions['backgroundColor']).css('position', 'absolute');
-        $(bg).css('top', '0').css('left', '0').css('opacity', defaultOptions['opacity']).css('z-index', '100');
+        $(bg).css('width', '100%').css('height', '100%').css('background-color', defaultOptions.backgroundColor).css('position', 'absolute');
+        $(bg).css('top', '0').css('left', '0').css('opacity', defaultOptions.opacity).css('z-index', '100');
 
         $(target).css('position', 'absolute').css('top', '50%').css('left', '50%').css('z-index', '101');
         $(target).css('background-color', '#fff');
@@ -78,23 +78,8 @@
         });
     };
 
-    $.fn.zeroFill = function (targetValue, fullLength) {
-        if (targetValue == null || fullLength < 0) {
-            return '';
-        }
-
-        var length = fullLength - targetValue.toString().length;
-        var result = '';
-
-        for (var i = 0; i < length; i++) {
-            result += '0';
-        }
-
-        return result + targetValue.toString();
-    };
-
     $.fn.getLastDateWithObject = function (date) {
-        if (date == null) {
+        if (date == null || typeof date == 'undefined') {
             return null;
         }
 
@@ -108,6 +93,10 @@
     $.fn.getLastDay = function (date) {
         return $.getLastDateWithObject(date).getDay();
     };
+
+    $.fn.getDateString = function (date) {
+        return date.getFullYear + $.zeroFill(date.getMonth() + 1, 2) + $.zeroFill(date.getDate(), 2);
+    };
     
     // 화면 가운데 정렬하기
     // 참고 : http://www.hackerex.com/Question/10/제이쿼리로DIV요소를화면가운데에놓기
@@ -119,3 +108,20 @@
         return this;
     };
 })($);
+
+$.extend ({
+    zeroFill : function (targetValue, fullLength) {
+        if (targetValue == null || typeof targetValue == 'undefined' || fullLength < 0) {
+            return '';
+        }
+
+        var length = fullLength - targetValue.toString().length;
+        var result = '';
+
+        for (var i = 0; i < length; i++) {
+            result += '0';
+        }
+
+        return result + targetValue.toString();
+    }
+});

@@ -14,7 +14,7 @@
                 <span class="message"></span>
 			</fieldset>
 			<fieldset id="setZeroFill">
-				<legend>$.zeroFill Sample</legend>
+				<legend>$.zeroFill Sample(fullLength : 10)</legend>
 				<label for="exZerofill">
 					Target length : <input type="text" id="exZeroFill" name="exZeroFill" placeholder="input target text" />
 				</label>
@@ -71,7 +71,7 @@
 				});
                 
                 $('#btnZeroFill').bind('click', function() {
-                    $('#setZeroFill').find('.message').text('result : ' + $('#exZeroFill').zeroFill($('#exZeroFill').val(), 10));
+                    $('#setZeroFill').find('.message').text('result : ' + $.zeroFill($('#exZeroFill').val(), 10));
                 });
                 
                 $('#btnPopupLayer').bind('click', function () {
